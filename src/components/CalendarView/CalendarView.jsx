@@ -10,7 +10,7 @@ import './CalendarView.css';
 const CalendarView = () => {
   const { workouts } = useWorkouts();
   const [selectedDate, setSelectedDate] = useState(new Date());
-  
+
   // Group workouts by date for quick lookup
   const workoutsByDate = workouts.reduce((acc, workout) => {
     const date = format(parseISO(workout.date), 'yyyy-MM-dd');
@@ -20,12 +20,11 @@ const CalendarView = () => {
     acc[date].push(workout);
     return acc;
   }, {});
-  
+
   const tileContent = ({ date, view }) => {
     if (view === 'month') {
       const formattedDate = format(date, 'yyyy-MM-dd');
       const dayWorkouts = workoutsByDate[formattedDate] || [];
-      
       if (dayWorkouts.length > 0) {
         return (
           <div className="calendar-view__tile-content">
@@ -38,26 +37,28 @@ const CalendarView = () => {
     }
     return null;
   };
-  
+
   const tileClassName = ({ date, view }) => {
     if (view === 'month') {
       const formattedDate = format(date, 'yyyy-MM-dd');
       const hasWorkouts = workoutsByDate[formattedDate];
-      
       if (hasWorkouts) {
         return 'calendar-view__tile--has-workouts';
       }
-      
       if (isSameDay(date, new Date())) {
         return 'calendar-view__tile--today';
       }
     }
     return null;
   };
-  
+
+  // 🔑 Сортируем тренировки по времени (по возрастанию)
   const getWorkoutsForDate = () => {
     const formattedDate = format(selectedDate, 'yyyy-MM-dd');
-    return workoutsByDate[formattedDate] || [];
+    const dayWorkouts = workoutsByDate[formattedDate] || [];
+    return dayWorkouts.sort((a, b) => {
+      return new Date(a.date) - new Date(b.date); // утро → вечер
+    });
   };
 
   return (
@@ -72,12 +73,10 @@ const CalendarView = () => {
           calendarType="US"
         />
       </div>
-      
       <div className="calendar-view__day-workouts">
         <h3 className="calendar-view__day-title">
           Тренировки на {format(selectedDate, 'dd MMMM yyyy', { locale: ru })}
         </h3>
-        
         {getWorkoutsForDate().length === 0 ? (
           <p className="calendar-view__no-workouts">Нет запланированных тренировок</p>
         ) : (
