@@ -1,0 +1,150 @@
+/* src/components/CalendarView/CalendarView.css */
+.calendar-view {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.calendar-view__wrapper {
+  background-color: var(--bg-secondary);
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.react-calendar {
+  width: 100%;
+  border: none;
+  font-family: inherit;
+}
+
+.react-calendar__tile--now {
+  background-color: rgba(74, 111, 165, 0.1) !important;
+}
+
+.react-calendar__tile--active {
+  background-color: var(--accent-primary) !important;
+  color: white !important;
+}
+
+.calendar-view__tile--has-workouts {
+  position: relative;
+}
+
+.calendar-view__tile--has-workouts::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent-primary);
+  border-radius: 50%;
+}
+
+.calendar-view__tile-content {
+  position: absolute;
+  bottom: 2px;
+  right: 4px;
+  background-color: var(--accent-primary);
+  color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: bold;
+  z-index: 1;
+}
+
+.calendar-view__day-workouts {
+  background-color: var(--bg-secondary);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-view__day-title {
+  margin-top: 0;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--text-secondary);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.calendar-view__no-workouts {
+  color: var(--text-secondary);
+  text-align: center;
+  padding: 1rem;
+}
+
+.calendar-view__workouts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.calendar-view__workout-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: var(--bg-primary);
+  border-radius: 8px;
+  transition: transform 0.3s;
+}
+
+.calendar-view__workout-item:hover {
+  transform: translateX(5px);
+}
+
+.calendar-view__workout-time {
+  min-width: 70px;
+  background-color: var(--accent-secondary);
+  color: white;
+  padding: 0.5rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.calendar-view__workout-details {
+  flex: 1;
+}
+
+.calendar-view__workout-type {
+  font-weight: 600;
+  color: var(--accent-primary);
+  margin-bottom: 0.25rem;
+}
+
+.calendar-view__workout-duration {
+  color: var(--text-secondary);
+  margin-bottom: 0.25rem;
+}
+
+.calendar-view__workout-notes {
+  color: var(--text-secondary);
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .calendar-view {
+    grid-template-columns: 1fr;
+  }
+  
+  .calendar-view__workout-item {
+    flex-direction: column;
+  }
+  
+  .calendar-view__workout-time {
+    min-width: auto;
+    width: fit-content;
+  }
+}

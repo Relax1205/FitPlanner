@@ -1,0 +1,38 @@
+/* src/pages/PlannerPage/PlannerPage.css */
+.planner-page {
+  padding: 1rem 0;
+}
+
+.planner-page__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.planner-page__title {
+  margin: 0;
+  color: var(--accent-primary);
+  font-size: 1.8rem;
+}
+
+.planner-page__add-button {
+  white-space: nowrap;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+  .planner-page__header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+  
+  .planner-page__add-button {
+    width: 100%;
+    text-align: center;
+  }
+}

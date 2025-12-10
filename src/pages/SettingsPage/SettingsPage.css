@@ -1,0 +1,135 @@
+/* src/pages/SettingsPage/SettingsPage.css */
+.settings-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem 0;
+}
+
+.settings-page__title {
+  margin-top: 0;
+  color: var(--accent-primary);
+  margin-bottom: 2rem;
+}
+
+.settings-page__section {
+  background-color: var(--bg-secondary);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.settings-page__section-title {
+  margin-top: 0;
+  color: var(--accent-primary);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--text-secondary);
+}
+
+.settings-page__setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.settings-page__setting-item:last-child {
+  border-bottom: none;
+}
+
+.settings-page__setting-label {
+  margin-right: 1rem;
+}
+
+.settings-page__toggle-container {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.settings-page__toggle-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.settings-page__toggle-switch {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 24px;
+}
+
+.settings-page__toggle-switch:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+.settings-page__toggle-input:checked + .settings-page__toggle-switch {
+  background-color: var(--accent-primary);
+}
+
+.settings-page__toggle-input:checked + .settings-page__toggle-switch:before {
+  transform: translateX(26px);
+}
+
+.settings-page__select {
+  padding: 0.5rem;
+  border: 1px solid var(--text-secondary);
+  border-radius: 4px;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-width: 200px;
+}
+
+.settings-page__section--danger {
+  border-left: 4px solid var(--error);
+}
+
+.settings-page__reset-button {
+  background-color: var(--error);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.settings-page__reset-button:hover {
+  background-color: #d32f2f;
+}
+
+.settings-page__reset-warning {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .settings-page__setting-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  
+  .settings-page__toggle-container {
+    align-self: flex-end;
+  }
+}

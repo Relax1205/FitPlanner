@@ -1,0 +1,79 @@
+/* src/components/Button/Button.css */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.3);
+}
+
+/* Size modifiers */
+.button--small {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+.button--medium {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+}
+
+.button--large {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+}
+
+/* Variant modifiers */
+.button--primary {
+  background-color: var(--accent-primary);
+  color: white;
+}
+
+.button--primary:hover:not(:disabled) {
+  background-color: var(--accent-secondary);
+  transform: translateY(-1px);
+}
+
+.button--secondary {
+  background-color: transparent;
+  color: var(--accent-primary);
+  border: 2px solid var(--accent-primary);
+}
+
+.button--secondary:hover:not(:disabled) {
+  background-color: rgba(74, 111, 165, 0.1);
+}
+
+.button--success {
+  background-color: var(--success);
+  color: white;
+}
+
+.button--success:hover:not(:disabled) {
+  background-color: #43a047;
+}
+
+.button--danger {
+  background-color: var(--error);
+  color: white;
+}
+
+.button--danger:hover:not(:disabled) {
+  background-color: #d32f2f;
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
