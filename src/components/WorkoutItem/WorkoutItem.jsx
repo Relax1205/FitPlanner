@@ -1,21 +1,20 @@
 // src/components/WorkoutItem/WorkoutItem.jsx
 import React, { useState } from 'react';
 import { useWorkouts } from '../../context/WorkoutContext';
-import WorkoutForm from '../WorkoutForm/WorkoutForm';
 import { format, parseISO } from 'date-fns';
 import Button from '../Button/Button';
 import './WorkoutItem.css';
 
-const WorkoutItem = ({ workout }) => {
-  // 🔑 Защита от undefined
+const WorkoutItem = ({ workout, onEdit }) => {
+  // 🔑 ВСЕ ХУКИ — СТРОГО В НАЧАЛЕ, ДО ЛЮБОЙ ЛОГИКИ
+  const { deleteWorkout } = useWorkouts();
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+
+  // 🔑 Защита от undefined — НО ПОСЛЕ ХУКОВ
   if (!workout || typeof workout !== 'object' || workout.id == null) {
     console.warn('WorkoutItem получил некорректные данные:', workout);
     return null;
   }
-
-  const { deleteWorkout } = useWorkouts();
-  const [showEditModal, setShowEditModal] = useState(false);
-  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
   const handleDelete = () => {
     deleteWorkout(workout.id);
@@ -44,7 +43,7 @@ const WorkoutItem = ({ workout }) => {
         <Button 
           variant="secondary"
           size="small"
-          onClick={() => setShowEditModal(true)}
+          onClick={() => onEdit && onEdit(workout)}
           aria-label="Редактировать тренировку"
         >
           ✏️
@@ -79,15 +78,6 @@ const WorkoutItem = ({ workout }) => {
             </Button>
           </div>
         </div>
-      )}
-
-      {/* 🔑 Рендерим форму только если модалка открыта */}
-      {showEditModal && (
-        <WorkoutForm 
-          isOpen={true}
-          onClose={() => setShowEditModal(false)}
-          initialData={workout}
-        />
       )}
     </div>
   );

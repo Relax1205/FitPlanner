@@ -1,18 +1,14 @@
 /* src/components/WorkoutForm/WorkoutForm.css */
 .workout-form {
   background: var(--bg-secondary);
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  max-width: 500px;
-  width: 90vw;
-  max-height: 90vh; /* Уменьшили до 90vh */
+  padding: 1.8rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+  max-width: 600px; /* 🔑 Увеличено с 500px до 600px */
+  width: 92vw;
+  max-height: 90vh;
   overflow-y: auto;
   margin: 0 auto;
-  /* 🔑 ВОССТАНОВЛЕНО: Убрали стили для полного экрана */
-  width: auto;
-  height: auto;
-  border-radius: 8px;
   display: block;
 }
 
@@ -20,59 +16,63 @@
   margin-top: 0;
   color: var(--text-primary);
   text-align: center;
-  margin-bottom: 1rem;
-  font-size: 1.25rem;
+  margin-bottom: 1.25rem;
+  font-size: 1.4rem;
+  font-weight: 600;
 }
 
 .workout-form__error {
   color: var(--error);
   background-color: rgba(244, 67, 54, 0.1);
-  padding: 0.75rem;
-  border-radius: 4px;
-  margin-bottom: 1rem;
-  border-left: 3px solid var(--error);
-  font-size: 0.9rem;
+  padding: 0.85rem;
+  border-radius: 6px;
+  margin-bottom: 1.25rem;
+  border-left: 4px solid var(--error);
+  font-size: 0.95rem;
 }
 
 .workout-form__group {
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 
 .workout-form__label {
   display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
+  margin-bottom: 0.6rem;
+  font-weight: 600;
   color: var(--text-primary);
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 .workout-form__input,
 .workout-form__select,
 .workout-form__textarea {
   width: 100%;
-  padding: 0.75rem;
+  padding: 0.85rem;
   border: 1px solid var(--text-secondary);
-  border-radius: 4px;
+  border-radius: 6px;
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  font-size: 1rem;
+  font-size: 1.05rem;
   box-sizing: border-box;
+  transition: border-color 0.3s;
 }
 
-/* 🔑 Улучшенные стили для textarea */
+.workout-form__input:focus,
+.workout-form__select:focus,
+.workout-form__textarea:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 2px rgba(74, 111, 165, 0.2);
+}
+
 .workout-form__textarea {
   resize: vertical;
-  min-height: 60px;
-  max-height: 150px;
-  line-height: 1.4;
+  min-height: 80px;
+  max-height: 180px;
+  line-height: 1.5;
   overflow-y: auto;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  white-space: pre-wrap;
-  word-break: break-word;
 }
 
-/* Стили для скролла в textarea */
 .workout-form__textarea::-webkit-scrollbar {
   width: 6px;
 }
@@ -93,61 +93,42 @@
 
 .workout-form__actions {
   display: flex;
-  gap: 0.75rem;
+  gap: 1rem;
   justify-content: flex-end;
-  margin-top: 1rem;
+  margin-top: 1.25rem;
   flex-wrap: wrap;
 }
 
-/* 🔑 Контейнер для формы */
 .workout-form__content {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 1rem;
 }
 
+/* Мобильные устройства */
 @media (max-width: 500px) {
   .workout-form {
-    padding: 1rem;
-    max-height: 85vh;
-    width: 95vw;
-    /* 🔑 ВОССТАНОВЛЕНО: Компактный вид на мобильных */
-    margin: 0 auto;
+    padding: 1.2rem;
+    max-height: 88vh;
+    width: 96vw;
   }
-  
   .workout-form__title {
-    font-size: 1.1rem;
-    margin-bottom: 0.75rem;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
   }
-  
   .workout-form__actions {
     flex-direction: column;
-    gap: 0.5rem;
   }
-  
   .workout-form__textarea {
-    min-height: 80px;
-    max-height: 120px;
-  }
-  
-  .workout-form__group {
-    margin-bottom: 0.75rem;
+    min-height: 90px;
+    max-height: 140px;
   }
 }
 
-/* 🔑 Стили для высоких экранов */
-@media (max-height: 700px) {
+/* Очень узкие экраны */
+@media (max-width: 360px) {
   .workout-form {
-    max-height: 85vh;
     padding: 1rem;
-  }
-  
-  .workout-form__group {
-    margin-bottom: 0.75rem;
-  }
-  
-  .workout-form__textarea {
-    min-height: 60px;
-    max-height: 100px;
+    width: 98vw;
   }
 }
